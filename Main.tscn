@@ -1,0 +1,158 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://StatsManager.gd" type="Script" id=1]
+[ext_resource path="res://jo-sword.theme.tres" type="Theme" id=2]
+[ext_resource path="res://Player.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://rubik.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = SubResource( 1 )
+
+[node name="Main" type="Node"]
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="StatsManager" type="Node" parent="Player"]
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="Player"]
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="bg" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.027451, 0.0392157, 0.168627, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="container" type="GridContainer" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = -32.0
+margin_bottom = -144.0
+theme = ExtResource( 2 )
+custom_constants/hseparation = 32
+columns = 2
+
+[node name="asideActions" type="VBoxContainer" parent="UI/container"]
+margin_right = 464.0
+margin_bottom = 424.0
+size_flags_horizontal = 3
+custom_constants/separation = 32
+
+[node name="changeName" type="Button" parent="UI/container/asideActions"]
+margin_right = 464.0
+margin_bottom = 82.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 2 )
+text = "Cambiar nombre"
+
+[node name="saveData" type="Button" parent="UI/container/asideActions"]
+margin_top = 114.0
+margin_right = 464.0
+margin_bottom = 196.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 2 )
+text = "Guardar datos"
+
+[node name="getData" type="Button" parent="UI/container/asideActions"]
+margin_top = 228.0
+margin_right = 464.0
+margin_bottom = 310.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 2 )
+text = "Obtener datos"
+
+[node name="resetData" type="Button" parent="UI/container/asideActions"]
+margin_top = 342.0
+margin_right = 464.0
+margin_bottom = 424.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 2 )
+text = "Resetear datos"
+
+[node name="statsData" type="TextEdit" parent="UI/container"]
+margin_left = 496.0
+margin_right = 960.0
+margin_bottom = 424.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+text = "Este es el valor
+por
+defecto
+de éste
+input."
+wrap_enabled = true
+
+[node name="HSeparator" type="HSeparator" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 479.0
+margin_right = -32.0
+margin_bottom = -117.0
+theme = ExtResource( 2 )
+
+[node name="Footer" type="PanelContainer" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 505.0
+margin_right = -32.0
+margin_bottom = -32.0
+theme = ExtResource( 2 )
+
+[node name="container" type="GridContainer" parent="UI/Footer"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 944.0
+margin_bottom = 55.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+columns = 2
+
+[node name="socialButtons" type="HBoxContainer" parent="UI/Footer/container"]
+margin_right = 703.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+
+[node name="orlandobricenob" type="Label" parent="UI/Footer/container/socialButtons"]
+margin_right = 251.0
+margin_bottom = 47.0
+theme = ExtResource( 2 )
+text = "@OrlandoBricenoB | Jo-Sword
+Pronto videotutorial"
+align = 1
+
+[node name="thanksText" type="Label" parent="UI/Footer/container"]
+margin_left = 707.0
+margin_right = 928.0
+margin_bottom = 47.0
+theme = ExtResource( 2 )
+text = "A petición de Liao Roberto,
+ ¡Espero haberte ayudado!"
+align = 1
+
+[connection signal="button_up" from="UI/container/asideActions/changeName" to="Player/StatsManager" method="_on_changeName_button_up"]
+[connection signal="button_up" from="UI/container/asideActions/saveData" to="Player/StatsManager" method="_on_saveData_button_up"]
+[connection signal="button_up" from="UI/container/asideActions/getData" to="Player/StatsManager" method="_on_getData_button_up"]
+[connection signal="button_up" from="UI/container/asideActions/resetData" to="Player/StatsManager" method="_on_resetData_button_up"]
